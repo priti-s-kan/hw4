@@ -1,11 +1,29 @@
 <h1><%= @place["name"] %></h1>
 
 <h2>My Entries</h2>
-<% for entry in @entries %>
-  <h3><%= entry["title"] %></h3>
-  <h4><%= entry["occurred_on"] %></h4>
-  <p><%= entry["description"] %></p>
+
+<% if session["user_id"] != nil %>
+  <a href="/entries/new?place_id=<% @place["id"] %>" class="btn btn-success mb-3">New Entry</a>
 <% end %>
+
+<div class="row">
+  <% for entry in @entries %>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title mb-1"><%= entry["title"] %></h5>
+          <p class="card-subtitle text-muted mb-2"><%= entry["occurred_on"] %></p>
+
+          <% if entry.uploaded_image.attached? %>
+            <img src="<%= url_for(entry.uploaded_image) %>" class="img-fluid mb-3">
+          <% end %>
+
+          <p class="card-text"><%= entry["description"] %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <p>
   <a href="/entries/new?place_id=<%= @place["id"] %>">New Entry</a>

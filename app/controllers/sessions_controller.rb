@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     @user = User.find_by({ "email" => params["email"] })
 
     if @user != nil
-      if BCrypt::Passwod.new(@user["password"]) == params["password"]
+      if BCrypt::Password.new(@user["password"]) == params["password"]
         session["user_id"] = @user["id"]
         flash["notice"] = "Welcome #{@user["first_name"]}!"
         redirect_to "/places"
@@ -14,8 +14,8 @@ class SessionsController < ApplicationController
         flash["notice"] = "Incorrect attempt; please try again."
         redirect_to "/login"
       end
-        flash["notice"] = "Incorrect attempt; please try again."
-        redirect_to "/login"
+        # flash["notice"] = "Incorrect attempt; please try again."
+        # redirect_to "/login"
     end
   end
 
