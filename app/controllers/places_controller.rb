@@ -1,12 +1,12 @@
 class PlacesController < ApplicationController
 
   def index
-    @places = Place.all
     if User.find_by({ "id" => session["user_id"] }) == nil
       flash["notice"] = "You must log in to view!"
       redirect_to "/login"
       return
     end
+    @places = Place.all
   end
 
   def show

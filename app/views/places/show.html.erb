@@ -3,7 +3,7 @@
 <h2>My Entries</h2>
 
 <% if session["user_id"] != nil %>
-  <a href="/entries/new?place_id=<% @place["id"] %>" class="btn btn-success mb-3">New Entry</a>
+  <a href="/entries/new?place_id=<%= @place["id"] %>" class="btn btn-success mb-3">New Entry</a>
 <% end %>
 
 <div class="row">
@@ -24,10 +24,6 @@
     </div>
   <% end %>
 </div>
-
-<p>
-  <a href="/entries/new?place_id=<%= @place["id"] %>">New Entry</a>
-</p>
 
 <p>
   <a href="/places">Back to All Places</a>
