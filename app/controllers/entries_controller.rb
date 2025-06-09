@@ -2,7 +2,7 @@ class EntriesController < ApplicationController
 
   def new    
     if User.find_by({ "id" => session["user_id"] }) == nil
-      flash["notice"] = "You must log in to view!"
+      flash["notice"] = "You must log in to view and create posts!"
       redirect_to "/login"
       return
     end
@@ -11,7 +11,7 @@ class EntriesController < ApplicationController
 
   def create
     if User.find_by({ "id" => session["user_id"] }) == nil
-      flash["notice"] = "You must log in to view!"
+      flash["notice"] = "You must log in to view and create posts!"
       redirect_to "/login"
       return
     else  
@@ -26,7 +26,5 @@ class EntriesController < ApplicationController
       @place = Place.find_by({ "id" => params["place_id"] })
       redirect_to "/places/#{@entry["place_id"]}"
     end
-    
   end
-
 end

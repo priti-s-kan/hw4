@@ -5,9 +5,10 @@
 <% end %>
 
 <ul class="list-group mb-3">
-  <% @places.each do |place| %>
+  <% for place in @places %>
     <li class="list-group-item">
       <a href="/places/<%= place["id"] %>"><%= place["name"] %></a>
     </li>
   <% end %>
 </ul>
+<!-- Used chat gpt to help with the bootstrap UI for the places list>
